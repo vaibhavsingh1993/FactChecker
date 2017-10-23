@@ -1,0 +1,45 @@
+<div id="_pfTarget2"><!-- This is the div where your widget will display --></div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+//
+// 1.) Set up your function to run when the document is finished loading.
+//
+$(document).ready(function(){
+    //
+    // 2.) When the document is ready, load some JSON from our API. JSON is our friend.
+    //
+    $.getJSON("http://www.politifact.com/api/statements/truth-o-meter/json/?n=3&callback=?",
+        //
+        // 3.) Once we have our JSON loaded, let's do a function with it. 
+        //
+        function(data) {
+            //
+            // 4.) Let's create a variable to hold our HTML. 
+            // Note, we have two widgets on this page. 
+            // We shouldn't have two variables that have the same name.
+            //
+            var pfHTML2 = '<h1>Recent statements at PolitiFact</h1>';
+            //
+            // 5.) Now, we need to loop through each item in our JSON data.
+            //
+            $.each(data, function(index,item){ // index is the count; item is the data.
+                //
+                // 6.) For each statement, grab the headline and URL.
+                //
+                index = index+1; // The index starts with 0; add 1 to make it human-friendly
+                pfHTML2 += '<h3><img src="'+item.ruling.canonical_ruling_graphic+'" alt="'+item.ruling_headline+'" /><a href="'+item.statement_url+'">'+item.ruling_headline+'</a></h3>';
+            });
+            //
+            // 7.) Take all of the HTML written to pfHTML2 and append it a DIV on the page.
+            //
+            $('#_pfTarget2').append(pfHTML2);
+        }
+    );
+});
+
+</script>
+
+<script src="http://www.politifact.com/media/js/politifactwidget3.js"></script>
+<script src="http://www.politifact.com/media/js/politifactupdatewidget3.js"></script>
