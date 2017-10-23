@@ -43,6 +43,7 @@ $(document).ready(function(){
             // We shouldn't have two variables that have the same name.
             //
             var pfHTML2 = '<h1>Recent statements at PolitiFact</h1>';
+	    var baseurl = 'http://www.politifact.com';
             //
             // 5.) Now, we need to loop through each item in our JSON data.
             //
@@ -55,9 +56,8 @@ $(document).ready(function(){
 				
 				//var graphic = document.getElementById(id).style.property = new style;
 				//var graphic = "http://static.politifact.com/rulings/pledge-meters/donald-trump.png";
-				debugger;
 				var graphic = img_types["img-" + item.ruling.ruling_slug];
-				pfHTML2 += '<h3><img src="'+graphic+'" alt="'+item.ruling_headline+'" class="sprite '+item.ruling.ruling_slug+'" /><a href="'+item.statement_url+'">'+item.ruling_headline+'</a></h3>';
+				pfHTML2 += '<h3><img src="'+graphic+'" alt="'+item.ruling_headline+'" class="sprite '+item.ruling.ruling_slug+'" /><a href="'+ baseurl +item.statement_url+'">'+item.ruling_headline+'</a></h3>';
 				
 				
             });
